@@ -34,24 +34,24 @@ void findifelse(int i)
 void judgeifelse()
 {
 	int i;
-	if (findif == 1 && findelse == 0)
+	if (findif == 1 && findelse == 0)//一行只有if 
 	{
-		ifel[top] = "if"; top++;
+		ifel[top] = "if"; top++;//if入栈 
 	}
-	else if (findif == 1 && findelse == 1)
+	else if (findif == 1 && findelse == 1)//一行有ifelse 
 	{
-		ifel[top] = "if_else"; top++;
+		ifel[top] = "if_else"; top++;//入栈 
 	}
-	else if (findif == 0 && findelse == 1)
+	else if (findif == 0 && findelse == 1)//出现else 
 	{
-		if (ifel[top - 1] == "if")
+		if (ifel[top - 1] == "if")//判断if-else结构 
 		{
 			top--;
 			cntifelse++;
 		}
 		else
 		{
-			for (i = top - 1; ifel[i] != "if"; i--)
+			for (i = top - 1; ifel[i] != "if"; i--)//判断if-if_else-else结构 
 			{
 				;
 			}
@@ -59,18 +59,18 @@ void judgeifelse()
 			top = i;
 		}
 	}
-	findif = 0; findelse = 0;
+	findif = 0; findelse = 0;//重新进行新一行的判断 
 }
 void findstring(string s)
 {
 	int i;
 	while (1)
 	{
-		gets_s(s1);
+		gets_s(s1);//读入一行代码 
 		s = s1;
-		if (s.length()<=0)
+		if (s.length()<=0)//判断是否为空 
 		break;
-		for (i = 0; i < 32; i++)
+		for (i = 0; i < 32; i++)//统计关键字主要循环 
 		{
 			if (s.find(a[i].name) != -1)
 			{
@@ -82,7 +82,7 @@ void findstring(string s)
 		judgeifelse();
 	}
 	sum = 0;
-	for (i = 0; i < 32; i++)
+	for (i = 0; i < 32; i++)//计算关键字总字数 
 	{
 		sum += a[i].num;
 	}
@@ -99,7 +99,7 @@ void printstr(int level)
 		{
 			cout << casenum[i] << " ";
 		}
-		if (fswitch == -1)
+		if (fswitch == -1)//不存在时输出0 
 		cout << "0";
 		cout<<endl;
 		if (level > 2)
@@ -114,10 +114,10 @@ int main()
 {
 	char road[500];
 	int level;
-	gets_s(road);
+	gets_s(road);//读入文件路径 
 	cin >> level;
 	FILE* fp = freopen(road, "r",stdin);
-	if (fp == NULL)
+	if (fp == NULL)//找不到则返回NULL 
 	{
 		cout << "Not Fount" << endl;
 		return 0;
