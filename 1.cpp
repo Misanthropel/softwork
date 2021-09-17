@@ -10,7 +10,7 @@ struct cnt
 	string name;
 	int num;
 };
-struct cnt a[32] = { "auto", 0,"break",0,"case",0,"char",0,"const", 0,"continue",0,"default",0,"do", 0,"double",0,"else",0,"enum",0,"float",0,"for",0,"goto",0,"if",0,"int",0,"long",0,"register",0, "while", 0,"reuturn",0,"short",0,"signed",0,"sizeof",0,"static", 0,"struct",0,"switch",0,"typedef",0,"union",0,"unsigned",0,"void", 0 ,"volatile",0,"while", 0 };
+struct cnt a[32] = { "auto", 0,"break",0,"case",0,"char",0,"const", 0,"continue",0,"default",0,"do", 0,"double",0,"else",0,"enum",0,"extern",0,"float",0,"for",0,"goto",0,"if",0,"int",0,"long",0,"register",0,"reuturn",0,"short",0,"signed",0,"sizeof",0,"static", 0,"struct",0,"switch",0,"typedef",0,"union",0,"unsigned",0,"void", 0 ,"volatile",0,"while", 0 };
 int sum = 0;//求出关键字总数 
 int fswitch = -1;//判断switch后面有几个case 
 int casenum[1500] = { 0 };//存储每个switch后面case的数量 
@@ -26,7 +26,7 @@ void findswitch(int i)
 }
 void findifelse(int i)
 {
-	if (i == 14)//i=14时为if 
+	if (i == 15)//i=14时为if 
 		findif = 1;
 	if (i == 9)//i=9时为else 
 		findelse = 1;
@@ -68,8 +68,9 @@ void findstring(string s)
 	{
 		gets_s(s1);//读入一行代码 
 		s = s1;
-		if (s.length()<=0)//判断是否为空 
-		break;
+		if (s.length() <= 0)//判断是否为空 
+			break;
+		int left = 0, right = 31, mid;
 		for (i = 0; i < 32; i++)//统计关键字主要循环 
 		{
 			if (s.find(a[i].name) != -1)
@@ -100,8 +101,8 @@ void printstr(int level)
 			cout << casenum[i] << " ";
 		}
 		if (fswitch == -1)//不存在时输出0 
-		cout << "0";
-		cout<<endl;
+			cout << "0";
+		cout << endl;
 		if (level > 2)
 		{
 			cout << "if-else num: " << cntifelse << endl;
@@ -116,7 +117,7 @@ int main()
 	int level;
 	gets_s(road);//读入文件路径 
 	cin >> level;
-	FILE* fp = freopen(road, "r",stdin);
+	FILE* fp = freopen(road, "r", stdin);
 	if (fp == NULL)//找不到则返回NULL 
 	{
 		cout << "Not Fount" << endl;
