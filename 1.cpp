@@ -19,14 +19,14 @@ int findif = 0, findelse = 0, top = 0, cntifelse = 0, cntif_else = 0;
 char s1[500];
 void findswitch(int i)
 {
-	if (i == 25)//找switch 
+	if (i == 25)//i=25时为switch 
 		fswitch++;
 	if (i == 2)//找每个switch后面跟着的case数量 
 		casenum[fswitch]++;
 }
 void findifelse(int i)
 {
-	if (i == 15)//i=14时为if 
+	if (i == 15)//i=15时为if 
 		findif = 1;
 	if (i == 9)//i=9时为else 
 		findelse = 1;
@@ -46,7 +46,7 @@ void judgeifelse()
 	{
 		if (ifel[top - 1] == "if")//判断if-else结构 
 		{
-			top--;
+			top--;//出栈 
 			cntifelse++;
 		}
 		else
@@ -70,7 +70,6 @@ void findstring(string s)
 		s = s1;
 		if (s.length() <= 0)//判断是否为空 
 			break;
-		int left = 0, right = 31, mid;
 		for (i = 0; i < 32; i++)//统计关键字主要循环 
 		{
 			if (s.find(a[i].name) != -1)
