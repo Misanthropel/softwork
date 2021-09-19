@@ -19,7 +19,7 @@ int findif = 0, findelse = 0, top = 0, cntifelse = 0, cntif_else = 0;
 char s1[500];
 void findswitch(int i)
 {
-	if (i == 25)//i=25时为switch 
+	if (i == 25)//找switch 
 		fswitch++;
 	if (i == 2)//找每个switch后面跟着的case数量 
 		casenum[fswitch]++;
@@ -46,7 +46,7 @@ void judgeifelse()
 	{
 		if (ifel[top - 1] == "if")//判断if-else结构 
 		{
-			top--;//出栈 
+			top--;
 			cntifelse++;
 		}
 		else
